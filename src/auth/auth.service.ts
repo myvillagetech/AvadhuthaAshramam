@@ -1,26 +1,64 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { LoginDto } from './dto/login.dto';
+import jwt, { sign, verify } from 'jsonwebtoken';
+import * as bcrypt from 'bcrypt';
+import { Error } from 'mongoose';
 
 @Injectable()
 export class AuthService {
-  create(createAuthDto: CreateAuthDto) {
-    return 'This action adds a new auth';
-  }
+    constructor() {}
 
-  findAll() {
-    return `This action returns all auth`;
-  }
+    getDecodedToken(token: string) {
+        const tokenPart = token ? token.split(' ')[1] : '';
 
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
+        try {
+            return verify(tokenPart, process.env.ACCESS_SECRET);
+        } catch (e) {
+            console.error(e.message);
+            return null;
+        }
+    }
 
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
+    async login(loginDetails: LoginDto): Promise<any> {
+        // const user: any = await this.userService.getUserByEmail(
+        //     loginDetails.email,
+        // );
+        // if (!user) {
+        //     throw new Error('Invaild user details');
+        // }
+        // const verifyUser: any = await this.verifyPassword(
+        //     loginDetails.password,
+        //     user.password,
+        // );
+        // if (verifyUser) {
+        //     const accessToken = sign(
+        //         { ...user._doc, password: undefined },
+        //         process.env.ACCESS_SECRET,
+        //         {
+        //             expiresIn: '4hr',
+        //         },
+        //     );
+        //     return {
+        //         accessToken: accessToken,
+        //         role: user.roles,
+        //         userId: user._id,
+        //     };
+        // } else {
+        //     throw new Error('Invaild Password');
+        // }
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
-  }
+    /**
+     * this is to verify unhashed password and hashed password
+     * @param password unhased password
+     * @param hashedPassword allready hashed and stored password
+     * @returns a boolean true or false;
+     */
+    async verifyPassword(
+        password: string,
+        hashedPassword: string,
+    ): Promise<any> {
+        const result = await bcrypt.compareSync(password, hashedPassword);
+        return result;
+    }
 }
