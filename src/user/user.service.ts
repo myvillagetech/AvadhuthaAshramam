@@ -2,28 +2,25 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
+import { MODEL_ENUMS } from 'src/shared/enums/model.enum';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { UserDocument } from './schemas/user.schemas';
 
 
 @Injectable()
 export class UserService {
-  createUser(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
-  }
+  @InjectModel(MODEL_ENUMS.USERS) private usersModel: Model<UserDocument>;
 
-  findAll() {
-    return `This action returns all user`;
-  }
+  async createUser(createUserDto: CreateUserDto) {
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
+    const hasedPassword = await this.generatePassword(
+      createUserDto.password,
+    );
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+    createUserDto.password = hasedPassword;
+    const newUser = await new this.usersModel(createUserDto);
+    return newUser.save();
   }
 
 
