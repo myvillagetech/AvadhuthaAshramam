@@ -1,4 +1,5 @@
 export const MODEL_ENUMS = {
     USERS: 'users',
-    BOOKS: 'books'
+    BOOKS: 'books',
+    ROOMS: 'rooms'
 }
