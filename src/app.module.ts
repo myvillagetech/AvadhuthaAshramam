@@ -6,13 +6,14 @@ import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MONGO_KEYS } from './config/keys.config';
 import { ConfigModule } from '@nestjs/config';
+import { RoomModule } from './room/room.module';
 
 @Module({
   imports: [
     MongooseModule.forRoot(MONGO_KEYS.url),
     UserModule, 
     AuthModule, 
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot(), RoomModule,
 
   ],
   controllers: [AppController],

@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+    IsIn,
     IsNotEmpty,
     IsString,
     MaxLength,
@@ -38,6 +39,7 @@ export class CreateUserDto {
     password: string;
 
     @IsNotEmpty()
+    @IsIn(Object.keys(Roles))
     @ApiProperty({
         type : Array<string>
     })
