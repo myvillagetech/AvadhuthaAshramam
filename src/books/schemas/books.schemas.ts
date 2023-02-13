@@ -21,9 +21,9 @@ export class BookSchemaCreator {
 
     @Prop( {
         required : false,
-        type : String
+        type : Array<String>
     })
-    image: string;
+    images: string[];
 
     @Prop( {
         required : false,

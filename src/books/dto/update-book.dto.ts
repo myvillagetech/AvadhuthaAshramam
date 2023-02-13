@@ -17,9 +17,9 @@ export class UpdateBookDto extends PartialType(CreateBookDto) {
 
     @IsNotEmpty()
     @ApiProperty({
-        type: String
+        type: Array<String>
     })
-    readonly image: string;
+    readonly images: string[];
 
     @IsNotEmpty()
     @ApiProperty({

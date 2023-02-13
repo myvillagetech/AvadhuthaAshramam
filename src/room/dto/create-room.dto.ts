@@ -10,7 +10,7 @@ export class CreateRoomDto {
     @ApiProperty({
         type : Array<string>
     })
-    readonly roles: IROOM_TYPES[];
+    readonly roomType: IROOM_TYPES[];
 
     @IsNotEmpty()
     @ApiProperty({

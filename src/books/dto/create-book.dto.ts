@@ -21,12 +21,10 @@ export class CreateBookDto {
     })
     readonly description: string;
 
-    @IsString()
-    @IsNotEmpty()
     @ApiProperty({
-        type: String
+        type: Array<String>
     })
-    readonly image: string;
+    readonly images: string[];
 
     @IsString()
     @IsNotEmpty()
