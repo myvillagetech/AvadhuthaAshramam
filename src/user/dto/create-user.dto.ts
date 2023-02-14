@@ -5,7 +5,7 @@ import {
     IsString,
     MaxLength,
 } from 'class-validator';
-import { IRoles, Roles } from 'src/shared/constants/roles.constants';
+import { IRoles, Roles } from 'src/shared/enums/roles.enum';
 
 
 
@@ -39,11 +39,10 @@ export class CreateUserDto {
     password: string;
 
     @IsNotEmpty()
-    @IsIn(Object.keys(Roles))
     @ApiProperty({
-        type : Array<string>
+        type : Array<String>
     })
-    readonly roles: IRoles[];
+    readonly roles: string[];
 
     @ApiProperty({
         type: Object

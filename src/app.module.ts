@@ -8,6 +8,8 @@ import { MONGO_KEYS } from './config/keys.config';
 import { ConfigModule } from '@nestjs/config';
 import { RoomModule } from './room/room.module';
 import { BooksModule } from './books/books.module';
+import { BikhshaModule } from './bikhsha/bikhsha.module';
+import { BikhshaDetailsModule } from './bikhsha-details/bikhsha-details.module';
 
 @Module({
   imports: [
@@ -16,7 +18,7 @@ import { BooksModule } from './books/books.module';
     AuthModule, 
     RoomModule,
     BooksModule,
-    ConfigModule.forRoot(), RoomModule,
+    ConfigModule.forRoot(), RoomModule, BikhshaModule, BikhshaDetailsModule,
 
   ],
   controllers: [AppController],

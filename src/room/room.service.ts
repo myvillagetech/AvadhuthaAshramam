@@ -12,7 +12,7 @@ export class RoomService {
   @InjectModel(MODEL_ENUMS.ROOMS) private roomModel: Model<RoomDocument>;
   async createRoom(createRoomDto: CreateRoomDto) {
     const newRoom = await new this.roomModel(createRoomDto);
-    return newRoom
+    return newRoom.save()
   }
 
   async getAllRooms() {

@@ -36,7 +36,7 @@ export class RoomSchemaCreator {
     })
     photos: string[];
 
-    @Prop( {
+    @Prop({
         type : Boolean,
         default : false
     })
