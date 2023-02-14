@@ -4,7 +4,7 @@ import {
     IsString,
     MaxLength,
 } from 'class-validator';
-import { IRoles, Roles } from 'src/shared/constants/roles.constants';
+import { IRoles, Roles } from 'src/shared/enums/roles.enum';
 
 export class CreateBookDto {
     @IsString()

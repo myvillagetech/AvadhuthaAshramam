@@ -34,5 +34,5 @@ export class CreateBikhshaDetailDto {
     @ApiProperty({
         type: Array<IAddons>
     })
-    readonly   addons : IAddons[];
+    readonly addons : IAddons[];
 }

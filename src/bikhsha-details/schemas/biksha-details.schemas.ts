@@ -7,7 +7,7 @@ import { IAddons } from 'src/bikhsha-details/interfaces/bikhsha.interface';
 @Schema({
     timestamps: true,
 })
-export class BikhshaSchemaCreator {
+export class BikhshaDetailsSchemaCreator {
     @Prop({
             required : true,
             type : String
@@ -39,5 +39,5 @@ export class BikhshaSchemaCreator {
     addons : IAddons[]
 }
 
-export type BikhshaDocument = BikhshaSchemaCreator & Document;
-export const BikhshaSchema = SchemaFactory.createForClass(BikhshaSchemaCreator);
+export type BikhshaDetailsDocument = BikhshaDetailsSchemaCreator & Document;
+export const BikhshaDetailsSchema = SchemaFactory.createForClass(BikhshaDetailsSchemaCreator);
