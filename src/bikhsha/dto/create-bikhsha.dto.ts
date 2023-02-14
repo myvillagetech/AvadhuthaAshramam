@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsString } from "class-validator";
-import { IAddons } from "../interfaces/bikhsha.interface";
+import { IAddons } from "../../bikhsha-details/interfaces/bikhsha.interface";
 
 export class CreateBikhshaDto {
     @IsString()

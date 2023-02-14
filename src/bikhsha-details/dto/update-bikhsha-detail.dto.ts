@@ -1,9 +1,9 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
-import { IAddons } from '../../bikhsha-details/interfaces/bikhsha.interface';
-import { CreateBikhshaDto } from './create-bikhsha.dto';
+import { IAddons } from '../interfaces/bikhsha.interface';
+import { CreateBikhshaDetailDto } from './create-bikhsha-detail.dto';
 
-export class UpdateBikhshaDto extends PartialType(CreateBikhshaDto) {
+export class UpdateBikhshaDetailDto extends PartialType(CreateBikhshaDetailDto) {
     @IsString()
     @ApiProperty({
         type: String

@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
-import { IAddons } from '../../bikhsha-details/interfaces/bikhsha.interface';
+import { IAddons } from 'src/bikhsha-details/interfaces/bikhsha.interface';
 
 
 

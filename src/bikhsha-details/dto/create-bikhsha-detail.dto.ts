@@ -1,28 +1,31 @@
-import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
-import { IAddons } from '../../bikhsha-details/interfaces/bikhsha.interface';
-import { CreateBikhshaDto } from './create-bikhsha.dto';
+import { ApiProperty } from "@nestjs/swagger";
+import { IsNotEmpty, IsString } from "class-validator";
+import { IAddons } from "../interfaces/bikhsha.interface";
 
-export class UpdateBikhshaDto extends PartialType(CreateBikhshaDto) {
+export class CreateBikhshaDetailDto {
     @IsString()
+    @IsNotEmpty()
     @ApiProperty({
         type: String
     })
     readonly basePrice: string;
 
     @IsString()
+    @IsNotEmpty()
     @ApiProperty({
         type: String
     })
     readonly description: string;
 
     @IsString()
+    @IsNotEmpty()
     @ApiProperty({
         type: String
     })
     readonly defaultCount: string;
 
     @IsString()
+    @IsNotEmpty()
     @ApiProperty({
         type: String
     })
@@ -32,5 +35,4 @@ export class UpdateBikhshaDto extends PartialType(CreateBikhshaDto) {
         type: Array<IAddons>
     })
     readonly   addons : IAddons[];
-
 }

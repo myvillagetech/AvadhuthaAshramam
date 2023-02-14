@@ -9,6 +9,7 @@ import { ConfigModule } from '@nestjs/config';
 import { RoomModule } from './room/room.module';
 import { BooksModule } from './books/books.module';
 import { BikhshaModule } from './bikhsha/bikhsha.module';
+import { BikhshaDetailsModule } from './bikhsha-details/bikhsha-details.module';
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { BikhshaModule } from './bikhsha/bikhsha.module';
     AuthModule, 
     RoomModule,
     BooksModule,
-    ConfigModule.forRoot(), RoomModule, BikhshaModule,
+    ConfigModule.forRoot(), RoomModule, BikhshaModule, BikhshaDetailsModule,
 
   ],
   controllers: [AppController],
