@@ -7,9 +7,15 @@ import { IROOM_TYPES, ROOM_TYPES } from "src/shared/constants/room-type.constant
 export class CreateRoomDto {
     @IsNotEmpty()
     @ApiProperty({
-        type : Array<String>
+        type : String
     })
-    readonly roomType: string[];
+    readonly roomType: string;
+
+    @IsNotEmpty()
+    @ApiProperty({
+        type : String
+    })
+    readonly roomNumber: string;
 
     @IsNotEmpty()
     @ApiProperty({

@@ -4,32 +4,33 @@ import { IROOM_TYPES, ROOM_TYPES } from 'src/shared/constants/room-type.constant
 import { CreateRoomDto } from './create-room.dto';
 
 export class UpdateRoomDto extends PartialType(CreateRoomDto) {
-    @IsNotEmpty()
-    @IsIn(Object.keys(ROOM_TYPES))
-    @ApiProperty({
-        type : Array<string>
-    })
-    readonly roles: IROOM_TYPES[];
 
-    @IsNotEmpty()
+    @ApiProperty({
+        type : String
+    })
+    readonly roomType: string;
+
+    @ApiProperty({
+        type : String
+    })
+    readonly roomNumber: string;
+
+
     @ApiProperty({
         type: String
     })
     readonly price: string;
 
-    @IsNotEmpty()
     @ApiProperty({
         type: Boolean
     })
     readonly airConditioner: boolean;
 
-    @IsNotEmpty()
     @ApiProperty({
         type: String
     })
     readonly capacity: string;
 
-    @IsNotEmpty()
     @ApiProperty({
         type: Array<String>
     })
