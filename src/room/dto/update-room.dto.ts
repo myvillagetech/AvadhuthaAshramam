@@ -36,7 +36,7 @@ export class UpdateRoomDto extends PartialType(CreateRoomDto) {
     readonly photos: string[];
 
     @ApiProperty({
-        type: Object
+        type: Array<{key : String , value : String}>
     })
-    readonly userAttributes : Object
+    readonly roomAttributes : {key : String , value : String}[]
 }

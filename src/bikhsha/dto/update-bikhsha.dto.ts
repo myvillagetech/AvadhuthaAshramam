@@ -14,12 +14,6 @@ export class UpdateBikhshaDto extends PartialType(CreateBikhshaDto) {
     @ApiProperty({
         type: String
     })
-    readonly description: string;
-
-    @IsString()
-    @ApiProperty({
-        type: String
-    })
     readonly defaultCount: string;
 
     @IsString()
@@ -28,9 +22,21 @@ export class UpdateBikhshaDto extends PartialType(CreateBikhshaDto) {
     })
     readonly incrementalValue: string;
 
+    @IsString()
+    @ApiProperty({
+        type: String
+    })
+    readonly numberOfPeople: string;
+
+    @IsString()
+    @ApiProperty({
+        type: String
+    })
+    readonly totalPrice: string;
+
     @ApiProperty({
         type: Array<IAddons>
     })
-    readonly   addons : IAddons[];
+    readonly selectedAddons : IAddons[];
 
 }

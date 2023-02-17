@@ -2,6 +2,12 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsString } from "class-validator";
 import { IAddons } from "../../bikhsha-details/interfaces/bikhsha.interface";
 
+
+export interface IUserDetails {
+    name :string,
+    phone : string,
+    email : string
+}
 export class CreateBikhshaDto {
     @IsString()
     @IsNotEmpty()
@@ -9,13 +15,6 @@ export class CreateBikhshaDto {
         type: String
     })
     readonly basePrice: string;
-
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty({
-        type: String
-    })
-    readonly description: string;
 
     @IsString()
     @IsNotEmpty()
@@ -31,9 +30,33 @@ export class CreateBikhshaDto {
     })
     readonly incrementalValue: string;
 
+    @IsString()
+    @IsNotEmpty()
+    @ApiProperty({
+        type: String
+    })
+    readonly numberOfPeople: string;
+
+    @IsString()
+    @IsNotEmpty()
+    @ApiProperty({
+        type: String
+    })
+    readonly totalPrice: string;
+
+
+    @IsNotEmpty()
+    @ApiProperty({
+        type: Object
+    })
+    readonly userDetails: IUserDetails;
+
+
     @ApiProperty({
         type: Array<IAddons>
     })
-    readonly   addons : IAddons[];
+    readonly selectedAddons : IAddons[];
+
+    
 
 }

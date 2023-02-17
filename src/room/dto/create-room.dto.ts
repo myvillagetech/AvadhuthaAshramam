@@ -6,11 +6,10 @@ import { IROOM_TYPES, ROOM_TYPES } from "src/shared/constants/room-type.constant
 
 export class CreateRoomDto {
     @IsNotEmpty()
-    @IsIn(Object.keys(ROOM_TYPES))
     @ApiProperty({
-        type : Array<string>
+        type : Array<String>
     })
-    readonly roomType: IROOM_TYPES[];
+    readonly roomType: string[];
 
     @IsNotEmpty()
     @ApiProperty({
@@ -37,7 +36,7 @@ export class CreateRoomDto {
     readonly photos: string[];
 
     @ApiProperty({
-        type: Object
+        type: Array<{key : String , value : String}>
     })
-    readonly userAttributes : Object
+    readonly roomAttributes : {key : String , value : String}[]
 }

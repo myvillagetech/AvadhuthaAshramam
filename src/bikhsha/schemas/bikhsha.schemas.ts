@@ -14,12 +14,6 @@ export class BikhshaSchemaCreator {
     })
     basePrice: string;
 
-    @Prop( {
-        required : true,
-        type : String
-    })
-    description: string;
-
     @Prop({
         required : true,
         type : String
@@ -33,10 +27,22 @@ export class BikhshaSchemaCreator {
     incrementalValue : string;
 
     @Prop({
+        required : true,
+        type :String
+    })
+    numberOfPeople : string;
+
+    @Prop({
+        required : true,
+        type :String
+    })
+    totalPrice : string;
+
+    @Prop({
         required : false,
         type : Array<IAddons>
     })
-    addons : IAddons[]
+    selectedAddons : IAddons[]
 }
 
 export type BikhshaDocument = BikhshaSchemaCreator & Document;

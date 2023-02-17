@@ -15,6 +15,12 @@ export class RoomSchemaCreator {
         required : true,
         type : String
     })
+    roomNumber: string;
+
+    @Prop({
+        required : true,
+        type : String
+    })
     price: string;
 
     @Prop( {
@@ -43,9 +49,9 @@ export class RoomSchemaCreator {
     isFilled: boolean;
 
     @Prop({
-        type: mongoose.Types.Map,
+        type: Array<{key : String , value : String}>
     })
-    roomAttributes: Object;
+    roomAttributes: {key : String , value : String}[];
 }
 
 export type RoomDocument = RoomSchemaCreator & Document;
