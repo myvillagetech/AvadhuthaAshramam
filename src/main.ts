@@ -1,13 +1,13 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 import { ValidationPipe } from '@nestjs/common/pipes';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import "reflect-metadata"
+import 'reflect-metadata';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  app.enableCors();
+    const app = await NestFactory.create(AppModule);
+    app.enableCors();
 
     app.useGlobalPipes(new ValidationPipe());
 
@@ -23,6 +23,6 @@ async function bootstrap() {
         .build();
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('api', app, document);
-  await app.listen(9000);
+    await app.listen(9000);
 }
 bootstrap();
