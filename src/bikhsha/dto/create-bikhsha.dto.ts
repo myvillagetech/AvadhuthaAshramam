@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsString } from "class-validator";
+import { Date } from "mongoose";
 import { IAddons } from "../../bikhsha-details/interfaces/bikhsha.interface";
 
 
@@ -43,6 +44,12 @@ export class CreateBikhshaDto {
         type: String
     })
     readonly totalPrice: string;
+
+    @IsNotEmpty()
+    @ApiProperty({
+        type: String
+    })
+    readonly date: string;
 
 
     @IsNotEmpty()

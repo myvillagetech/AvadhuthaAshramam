@@ -38,5 +38,11 @@ export class UpdateBikhshaDto extends PartialType(CreateBikhshaDto) {
         type: Array<IAddons>
     })
     readonly selectedAddons : IAddons[];
+    
+    @ApiProperty({
+        type: String
+    })
+    readonly date: string;
+
 
 }

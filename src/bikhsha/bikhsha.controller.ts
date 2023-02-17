@@ -1,34 +1,92 @@
+import { HttpStatus } from '@nestjs/common';
+import { Res } from '@nestjs/common';
+import { Put } from '@nestjs/common';
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { BikhshaService } from './bikhsha.service';
 import { CreateBikhshaDto } from './dto/create-bikhsha.dto';
 import { UpdateBikhshaDto } from './dto/update-bikhsha.dto';
 
 @Controller('bikhsha')
+@ApiTags('bikhaha')
 export class BikhshaController {
   constructor(private readonly bikhshaService: BikhshaService) {}
 
-  // @Post()
-  // create(@Body() createBikhshaDto: CreateBikhshaDto) {
-  //   return this.bikhshaService.create(createBikhshaDto);
-  // }
+  @Post()
+    async createBiksha(@Res() response, @Body() bikhshaDetails: CreateBikhshaDto) {
+        try {
+            const newBikhsha = await this.bikhshaService.createBikhsha(bikhshaDetails);
+            return response.status(HttpStatus.CREATED).json({
+                message: 'Bikhsha created successfully',
+                success: true,
+                newBikhsha,
+            });
+        } catch (error) {
+            return response.status(HttpStatus.BAD_REQUEST).json({
+                statusCode: 400,
+                message: 'Error: Biksha not created!',
+                error: error,
+                success: false,
+            });
+        }
+    }
 
-  // @Get()
-  // findAll() {
-  //   return this.bikhshaService.findAll();
-  // }
+    @Get()
+    async getAllBikshas(@Res() response) {
+        try {
+            const bikhshaDetails = await this.bikhshaService.getAllBikhshas();
+            return response.status(HttpStatus.CREATED).json({
+                message: 'Bikhshas fetched successfully',
+                success: true,
+                bikhshaDetails,
+            });
+        } catch (error) {
+            return response.status(HttpStatus.BAD_REQUEST).json({
+                statusCode: 400,
+                message: 'Error: Unable to fetch bikhshas!',
+                error: error,
+                success: false,
+            });
+        }
+    }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.bikhshaService.findOne(+id);
-  // }
+    @Get('/:bhikshaId')
+    async getBikshaById(@Res() response, @Param('bhikshaId') bhikshaId : string) {
+        try {
+            const bikhshaDetails = await this.bikhshaService.getBikhshaById(bhikshaId);
+            return response.status(HttpStatus.CREATED).json({
+                message: 'Bikhsha fetched successfully',
+                success: true,
+                bikhshaDetails,
+            });
+        } catch (error) {
+            return response.status(HttpStatus.BAD_REQUEST).json({
+                statusCode: 400,
+                message: 'Error: Unable to fetch bikhsha!',
+                error: error,
+                success: false,
+            });
+        }
+    }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateBikhshaDto: UpdateBikhshaDto) {
-  //   return this.bikhshaService.update(+id, updateBikhshaDto);
-  // }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.bikhshaService.remove(+id);
-  // }
+    @Put('/:bikshaId')
+    async updateBiksha(@Res() response, @Body() updateBikhshaDetails: UpdateBikhshaDto, @Param('bikshaId') bikshaId : string) {
+        try {
+            const bikhshaDetails = await this.bikhshaService.updateBikhshaById(bikshaId,updateBikhshaDetails);
+            return response.status(HttpStatus.CREATED).json({
+                message: 'Bikhsha updated successfully',
+                success: true,
+                bikhshaDetails,
+            });
+        } catch (error) {
+            return response.status(HttpStatus.BAD_REQUEST).json({
+                statusCode: 400,
+                message: 'Error: Unable to update Biksha! Please Try Again!',
+                error: error,
+                success: false,
+            });
+        }
+    }
+
 }

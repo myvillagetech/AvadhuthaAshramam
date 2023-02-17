@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose from 'mongoose';
+import mongoose, { Date } from 'mongoose';
 import { IAddons } from '../../bikhsha-details/interfaces/bikhsha.interface';
 
 
@@ -43,6 +43,12 @@ export class BikhshaSchemaCreator {
         type : Array<IAddons>
     })
     selectedAddons : IAddons[]
+
+    @Prop({
+        required : true,
+        type : Date
+    })
+    date : Date
 }
 
 export type BikhshaDocument = BikhshaSchemaCreator & Document;
