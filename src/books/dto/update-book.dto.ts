@@ -1,31 +1,30 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { IsNotEmpty } from 'class-validator';
-import { CreateBookDto } from './create-book.dto';
+import { IsNotEmpty, Min } from 'class-validator';
+import { AddBookDto } from './add-book.dto';
 
-export class UpdateBookDto extends PartialType(CreateBookDto) {
+export class UpdateBookDto extends PartialType(AddBookDto) {
     @IsNotEmpty()
     @ApiProperty({
         type: String
     })
-    readonly title: string;
+    readonly name: string;
 
     @IsNotEmpty()
+    @ApiProperty({
+        type: Number
+    })
+    @Min(0)
+    readonly price: number;
+
+    @ApiProperty({
+        type: Array<String>
+    })
+    readonly photos: string[];
+
     @ApiProperty({
         type: String
     })
     readonly description: string;
-
-    @IsNotEmpty()
-    @ApiProperty({
-        type: Array<String>
-    })
-    readonly images: string[];
-
-    @IsNotEmpty()
-    @ApiProperty({
-        type: String
-    })
-    readonly price: string;
 
     @IsNotEmpty()
     @ApiProperty({

@@ -3,5 +3,7 @@ export const MODEL_ENUMS = {
     BOOKS: 'books',
     ROOMS: 'rooms',
     BIKHSHA: 'bikhsha',
-    BIKHSHA_DETAILS : 'bikhshaDetails'
+    BIKHSHA_DETAILS : 'bikhshaDetails',
+    PHOTOS:'photos',
+    AUTHORS:'authors'
 }
