@@ -3,25 +3,18 @@ import {
     IsNotEmpty,
     IsNumber,
     IsString,
+    MaxLength,
     Min,
 } from 'class-validator';
+import { IRoles, Roles } from 'src/shared/enums/roles.enum';
 
-export class PhotoDto{
-    @IsString()
-    @ApiProperty({
-        type: String
-    })
-    url: string;
-}
-
-
-export class AddBookDto {
+export class AddBooksCartDto {
     @IsString()
     @IsNotEmpty()
     @ApiProperty({
         type: String
     })
-    readonly name: string;
+    readonly bookId: string;
 
     @IsNumber()
     @IsNotEmpty()
@@ -31,22 +24,17 @@ export class AddBookDto {
     @Min(0)
     readonly price: number;
 
+    @IsNumber()
+    @IsNotEmpty()
     @ApiProperty({
-        type: PhotoDto
+        type: Number
     })
-     photos:PhotoDto[] ;
-
-    @IsString()
-    @ApiProperty({
-        type: String
-    })
-    readonly description: string;
-
+    @Min(0)
+    readonly quantity: number;
     @IsString()
     @IsNotEmpty()
     @ApiProperty({
         type: String
     })
-    readonly author: string;
+    readonly userId: string;
 }
-

@@ -54,16 +54,18 @@ export class BookSchemaCreator {
     description: string;
 
     @Prop({
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'photos'
+        required: true,
+        type: Array<String>
+        // ref: 'photos'
     })
-    photos: Photo;
+    photos: string[];
 
     @Prop({
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'photos'
+        // type: mongoose.Schema.Types.ObjectId,
+        type: Array<String>
+        // ref: 'author'
     })
-    author: Author;
+    author: string;
 
 }
 

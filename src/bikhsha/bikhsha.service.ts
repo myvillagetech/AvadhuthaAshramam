@@ -23,13 +23,13 @@ export class BikhshaService {
     return bikhsha
   }
 
-  async getBikhshaById(bikhshaId : string) {
-    const bikhsha = await this.bikhshaModel.findById(bikhshaId);
-    if (!bikhsha) {
-      throw new NotFoundException('Bikhsha Not Found');
-    }
-    return bikhsha
-  }
+  // async getBikhshaById(bikhshaId : string) {
+  //   const bikhsha = await this.bikhshaModel.findById(bikhshaId);
+  //   if (!bikhsha) {
+  //     throw new NotFoundException('Bikhsha Not Found');
+  //   }
+  //   return bikhsha
+  // }
 
   async updateBikhshaById(bikhshaId : string,bikhshaDetails : UpdateBikhshaDto) {
     const bikhsha = await this.bikhshaModel.findByIdAndUpdate(bikhshaId,bikhshaDetails,{new : true});
@@ -39,13 +39,13 @@ export class BikhshaService {
     return bikhsha
   }
 
-  async deleteBikhshaById(bikhshaId : string,bikhshaDetails : UpdateBikhshaDto) {
-    const bikhsha = await this.bikhshaModel.findByIdAndUpdate(bikhshaId,bikhshaDetails,{new : true});
-    if (!bikhsha) {
-      throw new NotFoundException('Bikhsha Not Found');
-    }
-    return bikhsha
-  }
+  // async deleteBikhshaById(bikhshaId : string,bikhshaDetails : UpdateBikhshaDto) {
+  //   const bikhsha = await this.bikhshaModel.findByIdAndUpdate(bikhshaId,bikhshaDetails,{new : true});
+  //   if (!bikhsha) {
+  //     throw new NotFoundException('Bikhsha Not Found');
+  //   }
+  //   return bikhsha
+  // }
 
   
 }

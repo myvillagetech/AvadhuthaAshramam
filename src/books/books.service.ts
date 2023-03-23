@@ -28,8 +28,8 @@ export class BooksService {
   }
 
   async addBook(addBookDto: AddBookDto) {
-    const newUser = await new this.bookModel(addBookDto);
-    return newUser.save();
+    const newBook = await new this.bookModel(addBookDto);
+    return newBook.save();
   }
 
   async updateBook(bookDetails: UpdateBookDto, bookId: string) {
