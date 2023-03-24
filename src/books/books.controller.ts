@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Res, HttpStatus, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { BooksService } from './books.service';
-import { CreateBookDto } from './dto/create-book.dto';
+import { AddBookDto } from './dto/add-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 
 @Controller('books')
@@ -10,9 +10,9 @@ export class BooksController {
   constructor(private readonly booksService: BooksService) { }
 
   @Post()
-  async createbook(@Res() response, @Body() createBookDto: CreateBookDto) {
+  async addbook(@Res() response, @Body() addBookDto: AddBookDto) {
     try {
-      const newBook = await this.booksService.createBook(createBookDto);
+      const newBook = await this.booksService.addBook(addBookDto);
       return response.status(HttpStatus.CREATED).json({
         message: 'Book created successfully',
         success: true,

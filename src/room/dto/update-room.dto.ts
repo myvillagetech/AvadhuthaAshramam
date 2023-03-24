@@ -17,9 +17,9 @@ export class UpdateRoomDto extends PartialType(CreateRoomDto) {
 
 
     @ApiProperty({
-        type: String
+        type: Number
     })
-    readonly price: string;
+    readonly price: number;
 
     @ApiProperty({
         type: Boolean
@@ -27,17 +27,19 @@ export class UpdateRoomDto extends PartialType(CreateRoomDto) {
     readonly airConditioner: boolean;
 
     @ApiProperty({
-        type: String
+        type: Number
     })
-    readonly capacity: string;
+    readonly airConditionPrice: number;
+
+    @ApiProperty({
+        type: Number
+    })
+    readonly capacity: number;
 
     @ApiProperty({
         type: Array<String>
     })
     readonly photos: string[];
 
-    @ApiProperty({
-        type: Array<{key : String , value : String}>
-    })
-    readonly roomAttributes : {key : String , value : String}[]
+  
 }

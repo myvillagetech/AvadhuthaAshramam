@@ -9,46 +9,16 @@ import { IAddons } from '../../bikhsha-details/interfaces/bikhsha.interface';
 })
 export class BikhshaSchemaCreator {
     @Prop({
-            required : true,
-            type : String
+        required: true,
+        type: Number
     })
-    basePrice: string;
+    basePrice: number;
 
     @Prop({
-        required : true,
-        type : String
+        required: true,
+        type: Number
     })
-    defaultCount : string;
-
-    @Prop({
-        required : true,
-        type :String
-    })
-    incrementalValue : string;
-
-    @Prop({
-        required : true,
-        type :String
-    })
-    numberOfPeople : string;
-
-    @Prop({
-        required : true,
-        type :String
-    })
-    totalPrice : string;
-
-    @Prop({
-        required : false,
-        type : Array<IAddons>
-    })
-    selectedAddons : IAddons[]
-
-    @Prop({
-        required : true,
-        type : Date
-    })
-    date : Date
+    sweetPrice: number;
 }
 
 export type BikhshaDocument = BikhshaSchemaCreator & Document;

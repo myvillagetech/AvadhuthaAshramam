@@ -8,7 +8,7 @@ import { CreateBikhshaDto } from './dto/create-bikhsha.dto';
 import { UpdateBikhshaDto } from './dto/update-bikhsha.dto';
 
 @Controller('bikhsha')
-@ApiTags('bikhaha')
+@ApiTags('bikhsha')
 export class BikhshaController {
   constructor(private readonly bikhshaService: BikhshaService) {}
 
@@ -44,25 +44,6 @@ export class BikhshaController {
             return response.status(HttpStatus.BAD_REQUEST).json({
                 statusCode: 400,
                 message: 'Error: Unable to fetch bikhshas!',
-                error: error,
-                success: false,
-            });
-        }
-    }
-
-    @Get('/:bhikshaId')
-    async getBikshaById(@Res() response, @Param('bhikshaId') bhikshaId : string) {
-        try {
-            const bikhshaDetails = await this.bikhshaService.getBikhshaById(bhikshaId);
-            return response.status(HttpStatus.CREATED).json({
-                message: 'Bikhsha fetched successfully',
-                success: true,
-                bikhshaDetails,
-            });
-        } catch (error) {
-            return response.status(HttpStatus.BAD_REQUEST).json({
-                statusCode: 400,
-                message: 'Error: Unable to fetch bikhsha!',
                 error: error,
                 success: false,
             });

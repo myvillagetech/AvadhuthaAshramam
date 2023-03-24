@@ -1,42 +1,40 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
     IsNotEmpty,
+    IsNumber,
     IsString,
     MaxLength,
+    Min,
 } from 'class-validator';
 import { IRoles, Roles } from 'src/shared/enums/roles.enum';
 
-export class CreateBookDto {
+export class AddBooksCartDto {
     @IsString()
     @IsNotEmpty()
     @ApiProperty({
         type: String
     })
-    readonly title: string;
+    readonly bookId: string;
 
+    @IsNumber()
+    @IsNotEmpty()
+    @ApiProperty({
+        type: Number
+    })
+    @Min(0)
+    readonly price: number;
+
+    @IsNumber()
+    @IsNotEmpty()
+    @ApiProperty({
+        type: Number
+    })
+    @Min(0)
+    readonly quantity: number;
     @IsString()
     @IsNotEmpty()
     @ApiProperty({
         type: String
     })
-    readonly description: string;
-
-    @ApiProperty({
-        type: Array<String>
-    })
-    readonly images: string[];
-
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty({
-        type: String
-    })
-    readonly price: string;
-
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty({
-        type: String
-    })
-    readonly author: string;
+    readonly userId: string;
 }

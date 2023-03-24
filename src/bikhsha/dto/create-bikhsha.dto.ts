@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { Date } from "mongoose";
 import { IAddons } from "../../bikhsha-details/interfaces/bikhsha.interface";
 
@@ -10,60 +10,18 @@ export interface IUserDetails {
     email : string
 }
 export class CreateBikhshaDto {
-    @IsString()
+    @IsNumber()
     @IsNotEmpty()
     @ApiProperty({
-        type: String
+        type: Number
     })
-    readonly basePrice: string;
+    readonly basePrice: number;
 
-    @IsString()
+    @IsNumber()
     @IsNotEmpty()
     @ApiProperty({
-        type: String
+        type: Number
     })
-    readonly defaultCount: string;
-
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty({
-        type: String
-    })
-    readonly incrementalValue: string;
-
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty({
-        type: String
-    })
-    readonly numberOfPeople: string;
-
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty({
-        type: String
-    })
-    readonly totalPrice: string;
-
-    @IsNotEmpty()
-    @ApiProperty({
-        type: String
-    })
-    readonly date: string;
-
-
-    @IsNotEmpty()
-    @ApiProperty({
-        type: Object
-    })
-    readonly userDetails: IUserDetails;
-
-
-    @ApiProperty({
-        type: Array<IAddons>
-    })
-    readonly selectedAddons : IAddons[];
-
-    
+    readonly sweetPrice: number;
 
 }

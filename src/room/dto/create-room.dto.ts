@@ -1,6 +1,6 @@
 import { Schema } from "@nestjs/mongoose";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsIn, IsNotEmpty } from "class-validator";
+import { IsIn, IsNotEmpty, IsOptional } from "class-validator";
 import { IROOM_TYPES, ROOM_TYPES } from "src/shared/constants/room-type.constant";
 
 
@@ -11,7 +11,7 @@ export class CreateRoomDto {
     })
     readonly roomType: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     @ApiProperty({
         type : String
     })
@@ -19,9 +19,9 @@ export class CreateRoomDto {
 
     @IsNotEmpty()
     @ApiProperty({
-        type: String
+        type: Number
     })
-    readonly price: string;
+    readonly price: Number;
 
     @IsNotEmpty()
     @ApiProperty({
@@ -31,9 +31,15 @@ export class CreateRoomDto {
 
     @IsNotEmpty()
     @ApiProperty({
-        type: String
+        type: Number
     })
-    readonly capacity: string;
+    readonly airConditionPrice: number;
+
+    @IsNotEmpty()
+    @ApiProperty({
+        type: Number
+    })
+    readonly capacity: number;
 
     @IsNotEmpty()
     @ApiProperty({
@@ -41,8 +47,8 @@ export class CreateRoomDto {
     })
     readonly photos: string[];
 
-    @ApiProperty({
-        type: Array<{key : String , value : String}>
-    })
-    readonly roomAttributes : {key : String , value : String}[]
+    // @ApiProperty({
+    //     type: Array<{key : String , value : String}>
+    // })
+    // readonly roomAttributes : {key : String , value : String}[]
 }

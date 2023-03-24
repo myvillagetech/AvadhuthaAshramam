@@ -12,6 +12,10 @@ import { BikhshaModule } from './bikhsha/bikhsha.module';
 import { BikhshaDetailsModule } from './bikhsha-details/bikhsha-details.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { BooksCartModule } from './books-cart/books-cart.module';
+import { BooksOrderModule } from './books-order/books-order.module';
+import { BikhshaServingModule } from './bikhsha-serving/bikhsha-serving.module';
+import { RoomTypesModule } from './room-types/room-types.module';
 
 @Module({
     imports: [
@@ -27,6 +31,10 @@ import { join } from 'path';
         ServeStaticModule.forRoot({
             rootPath: join(__dirname, '..', 'static'),
         }),
+        BooksCartModule,
+        BooksOrderModule,
+        BikhshaServingModule,
+        RoomTypesModule,
     ],
     controllers: [AppController],
     providers: [AppService],

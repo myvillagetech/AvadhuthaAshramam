@@ -48,10 +48,6 @@ export class RoomSchemaCreator {
     })
     isFilled: boolean;
 
-    @Prop({
-        type: Array<{key : String , value : String}>
-    })
-    roomAttributes: {key : String , value : String}[];
 }
 
 export type RoomDocument = RoomSchemaCreator & Document;
