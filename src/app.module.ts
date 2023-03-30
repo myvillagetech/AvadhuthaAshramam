@@ -9,7 +9,6 @@ import { ConfigModule } from '@nestjs/config';
 import { RoomModule } from './room/room.module';
 import { BooksModule } from './books/books.module';
 import { BikhshaModule } from './bikhsha/bikhsha.module';
-import { BikhshaDetailsModule } from './bikhsha-details/bikhsha-details.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { BooksCartModule } from './books-cart/books-cart.module';
@@ -27,7 +26,6 @@ import { RoomTypesModule } from './room-types/room-types.module';
         ConfigModule.forRoot(),
         RoomModule,
         BikhshaModule,
-        BikhshaDetailsModule,
         ServeStaticModule.forRoot({
             rootPath: join(__dirname, '..', 'static'),
         }),

@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Date } from 'mongoose';
-import { IAddons } from '../../bikhsha-details/interfaces/bikhsha.interface';
 
 
 
@@ -19,6 +18,17 @@ export class BikhshaSchemaCreator {
         type: Number
     })
     sweetPrice: number;
+
+    @Prop({
+        required: true,
+        type: Number,
+    })
+    servesFor: number;
+
+    @Prop({
+        type: String,
+    })
+    discription: string;
 }
 
 export type BikhshaDocument = BikhshaSchemaCreator & Document;

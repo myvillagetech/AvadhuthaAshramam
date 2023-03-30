@@ -1,14 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
-import { Date } from "mongoose";
-import { IAddons } from "../../bikhsha-details/interfaces/bikhsha.interface";
+import { IsNotEmpty, IsNumber, IsString,  } from "class-validator";
 
-
-export interface IUserDetails {
-    name :string,
-    phone : string,
-    email : string
-}
 export class CreateBikhshaDto {
     @IsNumber()
     @IsNotEmpty()
@@ -23,5 +15,19 @@ export class CreateBikhshaDto {
         type: Number
     })
     readonly sweetPrice: number;
+
+    @IsNumber()
+    @IsNotEmpty()
+    @ApiProperty({
+        type: Number
+    })
+    readonly servesFor: number;
+
+    @IsString()
+    @ApiProperty({
+        type: String
+    })
+    readonly discription: string;
+
 
 }
