@@ -61,9 +61,8 @@ export class BookSchemaCreator {
     photos: string[];
 
     @Prop({
-        // type: mongoose.Schema.Types.ObjectId,
-        type: Array<String>
-        // ref: 'author'
+        required : true,
+        type: String
     })
     author: string;
 

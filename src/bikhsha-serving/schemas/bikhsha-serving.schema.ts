@@ -1,4 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import mongoose from "mongoose";
+import { UserSchemaCreator } from "src/user/schemas/user.schemas";
 
 @Schema({
     timestamps: true,
@@ -50,6 +52,12 @@ export class BikhshaServingCreator {
         type: Date
     })
     serveDate: Date;
+
+    @Prop({
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'user'
+    })
+    userId: UserSchemaCreator;
 
     @Prop({
         required: true,
