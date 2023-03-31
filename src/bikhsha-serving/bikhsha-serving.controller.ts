@@ -1,5 +1,5 @@
 import { Controller, Post, Body, Res, HttpStatus,Headers, Get, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiParam, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guards';
 import { BikhshaServingService } from './bikhsha-serving.service';
 import { CreateBikhshaServingDto } from './dto/create-bikhsha-serving.dto';
@@ -8,10 +8,17 @@ import { CreateBikhshaServingDto } from './dto/create-bikhsha-serving.dto';
 @ApiTags('bikhsha-serving')
 @Controller('bikhsha-serving')
 @ApiBearerAuth('access-token')
+@UseGuards(JwtAuthGuard)
 export class BikhshaServingController {
     constructor(private readonly bikhshaServingService: BikhshaServingService) { }
 
     @Post()
+    @ApiParam({
+        name: 'Authorization',
+        required: false,
+        description:
+            '(Leave empty. Use lock icon on the top-right to authorize)',
+    })
     async createBiksha(@Res() response, @Body() bikhshaServingDetails: CreateBikhshaServingDto, @Headers('Authorization') authHeader: string,) {
         try {
             const newBikhshaForServing = await this.bikhshaServingService.createBikshaServe(bikhshaServingDetails,authHeader);
@@ -31,6 +38,12 @@ export class BikhshaServingController {
     }
 
     @Get()
+    @ApiParam({
+        name: 'Authorization',
+        required: false,
+        description:
+            '(Leave empty. Use lock icon on the top-right to authorize)',
+    })
     async getAllBikhshaBookings(@Res() response, @Headers('Authorization') authHeader: string){
         try{
             const bikhshas = await this.bikhshaServingService.getAllBikhshaBookings(authHeader);
