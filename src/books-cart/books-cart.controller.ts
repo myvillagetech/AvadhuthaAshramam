@@ -1,18 +1,27 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Res, HttpStatus, Put } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Post, Body, Headers, Param, Delete, Res, HttpStatus, Put, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiParam, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guards';
 import { BooksCartService } from './books-cart.service';
 import { AddBooksCartDto } from './dto/add-books-cart.dto';
 import { UpdateBooksCartDto } from './dto/update-books-cart.dto';
 
-@Controller('books/cart')
-@ApiTags('books/cart')
+@Controller('booksCart')
+@ApiTags('booksCart')
+@ApiBearerAuth('access-token')
+@UseGuards(JwtAuthGuard)
 export class BooksCartController {
   constructor(private readonly booksCartService: BooksCartService) { }
 
+  @ApiParam({
+    name: 'Authorization',
+    required: false,
+    description:
+        '(Leave empty. Use lock icon on the top-right to authorize)',
+})
   @Post()
-  async addBookToCart(@Res() response, @Body() addBookCartDto: AddBooksCartDto) {
+  async addBookToCart(@Res() response, @Body() addBookCartDto: AddBooksCartDto, @Headers('Authorization') token : string) {
     try {
-      const newBook = await this.booksCartService.createCart(addBookCartDto);
+      const newBook = await this.booksCartService.createCart(addBookCartDto,token);
       return response.status(HttpStatus.CREATED).json({
         message: 'cart created successfully',
         success: true,
@@ -22,6 +31,31 @@ export class BooksCartController {
       return response.status(HttpStatus.BAD_REQUEST).json({
         statusCode: 400,
         message: 'Error: cart not created!',
+        error: error,
+        success: false,
+      });
+    }
+  }
+
+  @ApiParam({
+    name: 'Authorization',
+    required: false,
+    description:
+        '(Leave empty. Use lock icon on the top-right to authorize)',
+  })
+  @Get()
+  async getUserCart(@Res() response, @Headers('Authorization') token : string) {
+    try {
+      const bookData = await this.booksCartService.getUserCart(token);
+      return response.status(HttpStatus.OK).json({
+        message: 'Books data found successfully',
+        data: bookData,
+        success: true,
+      });
+    } catch (error) {
+      return response.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: 400,
+        message: 'Error: Failed to get all Books',
         error: error,
         success: false,
       });
@@ -72,22 +106,5 @@ export class BooksCartController {
     }
   }
 
-  @Get()
-  async getUserCart(@Res() response) {
-    try {
-      const bookData = await this.booksCartService.getUserCart();
-      return response.status(HttpStatus.OK).json({
-        message: 'Books data found successfully',
-        data: bookData,
-        success: true,
-      });
-    } catch (error) {
-      return response.status(HttpStatus.BAD_REQUEST).json({
-        statusCode: 400,
-        message: 'Error: Failed to get all Books',
-        error: error,
-        success: false,
-      });
-    }
-  }
+  
 }

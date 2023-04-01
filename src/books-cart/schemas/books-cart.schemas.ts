@@ -1,11 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { BookSchemaCreator } from 'src/books/schemas/books.schemas';
+import { UserSchemaCreator } from 'src/user/schemas/user.schemas';
+
 
 @Schema({
     timestamps: true,
 })
-export class BookCartItem {
+export class BookCartSchemaCreator {
     @Prop({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'bookId'
@@ -23,21 +25,13 @@ export class BookCartItem {
         type: Number
     })
     quantity : number;
-}
 
-
-@Schema({
-    timestamps: true,
-})
-export class BookCart {
     @Prop({
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'bookCartItems'
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'user'
     })
-    bookCartItems : BookCartItem;
-     
+    userId: UserSchemaCreator;
 }
-export const BookCartSchema = SchemaFactory.createForClass(BookCart);
 
-export type BookCartDocument = BookCartItem & Document;
-export const BookCartItemSchema = SchemaFactory.createForClass(BookCartItem);
+export type BookCartDocument = BookCartSchemaCreator & Document;
+export const BookCartSchema = SchemaFactory.createForClass(BookCartSchemaCreator);

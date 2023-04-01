@@ -24,9 +24,9 @@ export class UpdateBookDto extends PartialType(AddBookDto) {
     readonly price: number;
 
     @ApiProperty({
-        type:PhotoDto
+        type: Array<String>
     })
-    readonly photos:PhotoDto[] ;
+     photos:string[];
 
     @ApiProperty({
         type: String

@@ -32,9 +32,9 @@ export class AddBookDto {
     readonly price: number;
 
     @ApiProperty({
-        type: PhotoDto
+        type: Array<String>
     })
-     photos:PhotoDto[] ;
+     photos:string[];
 
     @IsString()
     @ApiProperty({

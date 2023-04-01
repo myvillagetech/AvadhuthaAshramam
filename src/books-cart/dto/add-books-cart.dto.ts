@@ -31,10 +31,4 @@ export class AddBooksCartDto {
     })
     @Min(0)
     readonly quantity: number;
-    @IsString()
-    @IsNotEmpty()
-    @ApiProperty({
-        type: String
-    })
-    readonly userId: string;
 }

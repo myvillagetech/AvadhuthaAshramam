@@ -1,13 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
-import { BookCartItem } from 'src/books-cart/schemas/books-cart.schemas';
-import { BookSchemaCreator } from 'src/books/schemas/books.schemas';
+import { BookCartSchemaCreator } from 'src/books-cart/schemas/books-cart.schemas';
 
 @Schema({
     timestamps: true,
 })
 export class ShippingAddress {
-  
+
     @Prop({
         type: String,
     })
@@ -49,7 +48,7 @@ export class ShippingAddress {
     timestamps: true,
 })
 export class PaymentDetails {
-  
+
     @Prop({
         type: String,
     })
@@ -69,12 +68,11 @@ export class BooksOrder {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'bookCartId'
     })
-    bookCartId  : BookCartItem;
+    bookCartId  : BookCartSchemaCreator;
 
     @Prop({
         required: true,
         type: PaymentDetails,
-       
     })
     paymentInformation : PaymentDetails;
 
@@ -93,7 +91,7 @@ export class BooksOrder {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'userId '
         })
-        userId  : BookCartItem;  
+        userId  : BookCartSchemaCreator;  
 }
 
 export const ShippingAddressSchema = SchemaFactory.createForClass(ShippingAddress);
