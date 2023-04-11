@@ -15,6 +15,7 @@ import { BooksCartModule } from './books-cart/books-cart.module';
 import { BooksOrderModule } from './books-order/books-order.module';
 import { BikhshaServingModule } from './bikhsha-serving/bikhsha-serving.module';
 import { RoomTypesModule } from './room-types/room-types.module';
+import { PaymentGatewayModule } from './payment-gateway/payment-gateway.module';
 
 @Module({
     imports: [
@@ -33,6 +34,7 @@ import { RoomTypesModule } from './room-types/room-types.module';
         BooksOrderModule,
         BikhshaServingModule,
         RoomTypesModule,
+        PaymentGatewayModule,
     ],
     controllers: [AppController],
     providers: [AppService],
