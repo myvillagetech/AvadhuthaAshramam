@@ -17,7 +17,7 @@ export class PaymentGatewayService {
             link_id: v4(),
             link_expiry_time: formattedDate,
             link_meta: {
-                return_url: 'http://localhost:4200/digilocker?link_id={link_id}'
+                return_url: 'http://localhost:4200/payment/responce?link_id={link_id}'
             },
         };
         const requestConfig: AxiosRequestConfig = {
