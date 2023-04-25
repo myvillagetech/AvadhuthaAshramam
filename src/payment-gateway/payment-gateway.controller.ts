@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { HttpStatus } from '@nestjs/common/enums';
 import { ApiTags } from '@nestjs/swagger';
-import { PaymentDto } from './dto/payment.dto';
+import { PaymentDto, mobilePaymentDto } from './dto/payment.dto';
 import { PaymentGatewayService } from './payment-gateway.service';
 
 @Controller('payment-gateway')
@@ -56,6 +56,27 @@ export class PaymentGatewayController {
             return response.status(HttpStatus.BAD_REQUEST).json({
                 statusCode: 400,
                 message: 'Error: Payment Details not found!',
+                error: error,
+                success: false,
+            });
+        }
+    }
+
+    @Post('/mobile')
+    async mobilePayment(@Body() paymentDto: mobilePaymentDto, @Res() response) {
+        try {
+            const paymentDetails = await this.paymentGatewayService.mobilePayment(
+                paymentDto,
+            );
+            return response.status(HttpStatus.CREATED).json({
+                message: 'Payment Link created Sucessfully',
+                success: true,
+                paymentDetails,
+            });
+        } catch (error) {
+            return response.status(HttpStatus.BAD_REQUEST).json({
+                statusCode: 400,
+                message: 'Error: Payment link  not created!',
                 error: error,
                 success: false,
             });

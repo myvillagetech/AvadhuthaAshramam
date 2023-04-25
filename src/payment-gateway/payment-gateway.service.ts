@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { AxiosRequestConfig } from 'axios';
-import { PaymentDto } from './dto/payment.dto';
+import { PaymentDto, mobilePaymentDto } from './dto/payment.dto';
 import { v4 } from 'uuid';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
 
@@ -56,6 +56,36 @@ export class PaymentGatewayService {
         const result = await firstValueFrom(
             this.httpService.get(
                 `https://sandbox.cashfree.com/pg/links/${paymentId}/orders`,
+                requestConfig,
+            ),
+        );
+        return result.data;
+    }
+
+    async mobilePayment(paymentData: mobilePaymentDto) {
+        // const expiryDate = new Date();
+        // expiryDate.setTime(expiryDate.getTime() + 60 * 60 * 1000);
+        // const formattedDate = expiryDate.toISOString();
+        const data = {
+            ...paymentData,
+            order_id: v4(),
+            order_currency : "INR",
+        };
+        const requestConfig: AxiosRequestConfig = {
+            headers: {
+                'x-client-id': 'TEST359349fdb7de93f2fbb7611a64943953',
+                'x-client-secret':
+                    'TEST2b972eb2e66af39aac591215d730ba601b8a0606',
+                'x-api-version': '2022-09-01',
+                'Content-Type': 'application/json',
+                'x-request-id': "developer_name"
+            },
+        };
+
+        const result = await firstValueFrom(
+            this.httpService.post(
+                `https://sandbox.cashfree.com/pg/orders`,
+                data,
                 requestConfig,
             ),
         );

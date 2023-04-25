@@ -89,3 +89,40 @@ export class PaymentDto{
 
 }
 
+
+export class mobilePaymentDto{
+    
+    @IsNumber()
+    @ApiProperty({
+        type : Number
+    })
+    order_amount : Number
+
+    @IsObject()
+    @IsNotEmpty()
+    @ApiProperty({
+        type : Object,
+        properties : {
+            customer_phone : {type : 'string'},
+            customer_email : {type : 'string'},
+            customer_name : {type : 'string'},
+            customer_id:  {type : 'string'}
+        }
+    })
+    customer_details : coustomerDetails
+
+    @ApiProperty({
+        type : Object,
+        properties : {
+        }
+    })
+    order_meta : object
+
+    @ApiProperty({
+        type : String
+    })
+    order_note : string
+
+
+}
+
