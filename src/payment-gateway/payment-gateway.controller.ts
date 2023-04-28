@@ -82,4 +82,24 @@ export class PaymentGatewayController {
             });
         }
     }
+
+    @Get('/mobile/paymentDetails/:id')
+    async getMobilePaymentDetails(@Res() response, @Param('id') paymentId: string,){
+        try {
+            const paymentDetails =
+                await this.paymentGatewayService.getMobilePaymentDetails(paymentId);
+            return response.status(HttpStatus.CREATED).json({
+                message: 'Payment Details Fetched Sucessfully',
+                success: true,
+                paymentDetails,
+            });
+        } catch (error) {
+            return response.status(HttpStatus.BAD_REQUEST).json({
+                statusCode: 400,
+                message: 'Error: Payment Details not found!',
+                error: error,
+                success: false,
+            });
+        }
+    }
 }

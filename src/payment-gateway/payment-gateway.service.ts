@@ -91,5 +91,26 @@ export class PaymentGatewayService {
         );
         return result.data;
     }
+
+    async getMobilePaymentDetails(paymentId : string){
+
+        const requestConfig: AxiosRequestConfig = {
+            headers: {
+                accept: 'application/json',
+                'x-client-id': 'TEST359349fdb7de93f2fbb7611a64943953',
+                'x-client-secret':
+                    'TEST2b972eb2e66af39aac591215d730ba601b8a0606',
+                'x-api-version': '2022-09-01',
+                'content-type': 'application/json',
+            },
+        };
+        const result = await firstValueFrom(
+            this.httpService.get(
+                `https://sandbox.cashfree.com/pg/orders/${paymentId}`,
+                requestConfig,
+            ),
+        );
+        return result.data;
+    }
 }
         
