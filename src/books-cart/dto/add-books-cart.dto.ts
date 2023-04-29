@@ -5,6 +5,7 @@ import {
     IsString,
     MaxLength,
     Min,
+    isNotEmpty,
 } from 'class-validator';
 import { IRoles, Roles } from 'src/shared/enums/roles.enum';
 
@@ -15,6 +16,13 @@ export class AddBooksCartDto {
         type: String
     })
     readonly bookId: string;
+
+    @IsString()
+    @IsNotEmpty()
+    @ApiProperty({
+        type : String
+    })
+    readonly bookName : string;
 
     @IsNumber()
     @IsNotEmpty()

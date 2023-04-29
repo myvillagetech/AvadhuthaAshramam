@@ -16,6 +16,12 @@ export class BookCartSchemaCreator {
 
     @Prop({
         required: true,
+        type: String
+    })
+    bookName: string;
+
+    @Prop({
+        required: true,
         type: Number
     })
     price: number;
