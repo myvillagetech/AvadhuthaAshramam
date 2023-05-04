@@ -16,6 +16,7 @@ import { BooksOrderModule } from './books-order/books-order.module';
 import { BikhshaServingModule } from './bikhsha-serving/bikhsha-serving.module';
 import { RoomTypesModule } from './room-types/room-types.module';
 import { PaymentGatewayModule } from './payment-gateway/payment-gateway.module';
+import { AddressManagerModule } from './address-manager/address-manager.module';
 
 @Module({
     imports: [
@@ -35,6 +36,7 @@ import { PaymentGatewayModule } from './payment-gateway/payment-gateway.module';
         BikhshaServingModule,
         RoomTypesModule,
         PaymentGatewayModule,
+        AddressManagerModule,
     ],
     controllers: [AppController],
     providers: [AppService],

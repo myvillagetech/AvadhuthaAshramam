@@ -11,6 +11,7 @@ export const MODEL_ENUMS = {
     BOOKS_CART:'booksCart',
     BOOKS_ORDER:'booksOrder',
     BIKHSHA_SERVING_MODEL:'bikhshaServingModel',
-    ROOM_TYPES: 'roomTypes'
+    ROOM_TYPES: 'roomTypes',
+    ADDRESS_MANAGER : 'addressManager'
     
 }
