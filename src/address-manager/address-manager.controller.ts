@@ -78,6 +78,33 @@ export class AddressManagerController {
       }
     }
 
+    @Get('/id/:addressId')
+    @ApiParam({
+        name: 'Authorization',
+        required: false,
+        description:
+            '(Leave empty. Use lock icon on the top-right to authorize)',
+    })
+    async getAddressById(@Res() response, @Headers('Authorization') @Param('addressId') addressId : string) {
+      try{
+        const address = await this.addressManagerService.getAddressById(addressId)
+        return response.status(HttpStatus.OK).json({
+          message : 'Addresses Fetched successfully',
+          success: true,
+          address
+        })
+      } catch(error){
+        return response.status(HttpStatus.BAD_REQUEST).json({
+          statusCode: 400,
+          message: 'Unable fetch address',
+          error: error,
+          success: false,
+        });
+      }
+    }
+
+    
+
     @Put('/:addressId')
     @ApiParam({
         name: 'Authorization',

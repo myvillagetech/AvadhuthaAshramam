@@ -38,4 +38,9 @@ export class AddressManagerService {
     const address = await this.addressManagerModel.findByIdAndDelete(addressId)
     return address
   }
+
+  async getAddressById(addressId : string){
+    const addres = await this.addressManagerModel.findById(addressId);
+    return addres
+  }
 }
